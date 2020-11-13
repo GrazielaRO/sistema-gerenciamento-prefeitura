@@ -67,40 +67,37 @@ public class FuncionarioService implements IFuncionarioService{
 	}
 
 	public MensagemDTO alteraFuncionario(Long idFuncionario, FuncionarioDTO funcionarioDto) {
-
 		Optional<Funcionario> funcionarioConsultado = funcionarioRepository.findById(idFuncionario);
-		
+
 		if (funcionarioConsultado.isEmpty()) {
 			return new MensagemDTO(FUNCIONARIO_INEXISTENTE);
 		}
-		
+
 		Funcionario funcionario = funcionarioConsultado.get();
-		// verificar se alterou a secretaria
 		if (funcionarioDto.getIdSecretaria() != funcionario.getSecretaria().getIdSecretaria()) {
-			// guarda secretaria antiga
-			Secretaria secretariaAntiga = funcionario.getSecretaria();
-			secretariaAntiga.setOrcamentoFolha(secretariaAntiga.getOrcamentoFolha() + funcionario.getSalario());
-			secretariaRepository.save(secretariaAntiga);
-			
+
 			Optional<Secretaria> secretariaConsultada = secretariaRepository.findById(funcionarioDto.getIdSecretaria());
-			//verifica se a secretaria de destino existe
 			if (secretariaConsultada.isEmpty()) {
 				return new MensagemDTO(SECRETARIA_INEXISTENTE);
 			}
-			// verificar orçamento da nova secretaria
+
 			Secretaria secretaria = secretariaConsultada.get();
 			if (secretaria.getOrcamentoFolha() < funcionarioDto.getSalario()) {
 				return new MensagemDTO(ORCAMENTO_FOLHA_PAGAMENTO_INSUFICIENTE);
 			}
-			
+
+			Secretaria secretariaAntiga = funcionario.getSecretaria();
+			secretariaAntiga.setOrcamentoFolha(secretariaAntiga.getOrcamentoFolha() + funcionario.getSalario());
+			secretariaRepository.save(secretariaAntiga);
+
 		}
-		// verificar se houve alteração salarial
+
 		if (funcionarioDto.getSalario() >= funcionario.getSalario()) {
-			// verificar se há orçamento
+
 			if (funcionario.getSecretaria().getOrcamentoFolha() < funcionarioDto.getSalario()) {
 				return new MensagemDTO(ORCAMENTO_FOLHA_PAGAMENTO_INSUFICIENTE);
 			}
-			// alterar
+
 			Secretaria secretaria = secretariaRepository.findById(funcionarioDto.getIdSecretaria()).get();
 
 			funcionario.setNome(funcionarioDto.getNome());
@@ -109,14 +106,13 @@ public class FuncionarioService implements IFuncionarioService{
 			funcionario.setSecretaria(secretaria);
 			funcionario.setFuncao(funcionarioDto.getFuncao());
 			funcionario.setConcursado(funcionarioDto.getConcursado());
-			
+
 			secretaria.setOrcamentoFolha(secretaria.getOrcamentoFolha() - funcionario.getSalario());
 			secretariaRepository.save(secretaria);
-			//como chamar a secretaria antiga para voltar o valor do salário?
 
-			funcionarioRepository.save(funcionario);	
+			funcionarioRepository.save(funcionario);
 		}
-		
+
 		return new MensagemDTO(ALTERACAO_REALIZADA_COM_SUCESSO);
 	}
 
