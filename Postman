@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "5de75ffb-0191-4dde-b9e8-832508e3cb9c",
+		"name": "Sistema Gerenciamento Prefeitura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Secretaria - CRIAR",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000000,\r\n    \"orcamentoFolha\": 100000000,\r\n    \"telefone\": \"3432658749\",\r\n    \"endereco\": \"Rua do tatu, 1234\",\r\n    \"site\": \"www.secretariadesaude.org.br\",\r\n    \"email\": \"secdesaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/secretarias",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secretarias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Funcionário - CRIAR",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"José Francisco\",\r\n    \"cpf\": \"96385274102\",\r\n    \"salario\": 5000,\r\n    \"idSecretaria\": 3,\r\n    \"funcao\": \"administrativo\",\r\n    \"concursado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/funcionarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"funcionarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Projeto - CRIAR",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Maternidade\",\r\n    \"descricao\": \"Ampliação maternidade\",\r\n    \"custo\": 100000,\r\n    \"idSecretaria\": 3,\r\n    \"dataInicio\": \"2020-11-30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/projetos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"projetos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Secretaria - ALTERAR",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000000,\r\n    \"orcamentoFolha\": 100000000,\r\n    \"telefone\": \"2132658747\",\r\n    \"endereco\": \"Rua do Tatu, 1234\",\r\n    \"site\": \"www.secretariadasaude.org.br\",\r\n    \"email\": \"secdasaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/secretarias/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secretarias",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Funcionários - ALTERAR",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Graziela\",\r\n    \"cpf\": \"32165498702\",\r\n    \"salario\": 3000000.0,\r\n    \"idSecretaria\": 1,\r\n    \"funcao\": \"financeiro\",\r\n    \"concursado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/funcionarios/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"funcionarios",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Projetos - FINALIZAR PROJETO",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataEntrega\": \"2020-11-15\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/projetos/conclusao/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"projetos",
+						"conclusao",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Projetos - ALTERA DESCRIÇÃO",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descricao\": \"Renovação da maternidade\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/projetos/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"projetos",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Secretaria - CONSULTAR",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000.00,\r\n    \"orcamentoFolha\": 100000.00,\r\n    \"telefone\": \"1132658747\",\r\n    \"endereco\": \"Rua do Tatu, 1234\",\r\n    \"site\": \"www.secretariadasaude.org.br\",\r\n    \"email\": \"secdasaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/secretarias/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secretarias",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Projetos - CONSULTAR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/projetos/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"projetos",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Funcionário - CONSULTAR",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000.00,\r\n    \"orcamentoFolha\": 100000.00,\r\n    \"telefone\": \"1132658747\",\r\n    \"endereco\": \"Rua do Tatu, 1234\",\r\n    \"site\": \"www.secretariadasaude.org.br\",\r\n    \"email\": \"secdasaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/funcionarios/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"funcionarios",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Secretarias - LISTAR TODAS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000.00,\r\n    \"orcamentoFolha\": 100000.00,\r\n    \"telefone\": \"1132658747\",\r\n    \"endereco\": \"Rua do Tatu, 1234\",\r\n    \"site\": \"www.secretariadasaude.org.br\",\r\n    \"email\": \"secdasaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/secretarias",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secretarias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Projetos - LISTAR TODOS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000.00,\r\n    \"orcamentoFolha\": 100000.00,\r\n    \"telefone\": \"1132658747\",\r\n    \"endereco\": \"Rua do Tatu, 1234\",\r\n    \"site\": \"www.secretariadasaude.org.br\",\r\n    \"email\": \"secdasaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/projetos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"projetos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Funcionários - LISTAR TODOS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000.00,\r\n    \"orcamentoFolha\": 100000.00,\r\n    \"telefone\": \"1132658747\",\r\n    \"endereco\": \"Rua do Tatu, 1234\",\r\n    \"site\": \"www.secretariadasaude.org.br\",\r\n    \"email\": \"secdasaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/funcionarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"funcionarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Secretaria - REMOVER",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000.00,\r\n    \"orcamentoFolha\": 100000.00,\r\n    \"telefone\": \"1132658747\",\r\n    \"endereco\": \"Rua do Tatu, 1234\",\r\n    \"site\": \"www.secretariadasaude.org.br\",\r\n    \"email\": \"secdasaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/secretarias/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"secretarias",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Funcionário - REMOVER",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaAtuacao\": \"SAUDE\",\r\n    \"orcamentoProjeto\": 100000.00,\r\n    \"orcamentoFolha\": 100000.00,\r\n    \"telefone\": \"1132658747\",\r\n    \"endereco\": \"Rua do Tatu, 1234\",\r\n    \"site\": \"www.secretariadasaude.org.br\",\r\n    \"email\": \"secdasaude@mg.gov.br\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/funcionarios/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"funcionarios",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -12,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -46,7 +44,6 @@ public class Secretaria {
 	@Column (name = "orcamento_folha", nullable = false)
 	private Double orcamentoFolha;
 	
-	@Size (max = 15)
 	@Column(nullable = false)
 	private String telefone;
 	
@@ -56,8 +53,6 @@ public class Secretaria {
 	@Column(nullable = false)
 	private String site;
 
-	@Email
-	@Size (max = 255)
 	@Column(nullable = false)
 	private String email;
 	
