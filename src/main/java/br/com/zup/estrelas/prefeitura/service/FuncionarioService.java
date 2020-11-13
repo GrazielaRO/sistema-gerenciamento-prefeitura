@@ -67,37 +67,38 @@ public class FuncionarioService implements IFuncionarioService{
 	}
 
 	public MensagemDTO alteraFuncionario(Long idFuncionario, FuncionarioDTO funcionarioDto) {
-		Optional<Funcionario> funcionarioConsultado = funcionarioRepository.findById(idFuncionario);
 
+Optional<Funcionario> funcionarioConsultado = funcionarioRepository.findById(idFuncionario);
+		
 		if (funcionarioConsultado.isEmpty()) {
 			return new MensagemDTO(FUNCIONARIO_INEXISTENTE);
 		}
-
+		
 		Funcionario funcionario = funcionarioConsultado.get();
 		if (funcionarioDto.getIdSecretaria() != funcionario.getSecretaria().getIdSecretaria()) {
-
+			
 			Optional<Secretaria> secretariaConsultada = secretariaRepository.findById(funcionarioDto.getIdSecretaria());
 			if (secretariaConsultada.isEmpty()) {
 				return new MensagemDTO(SECRETARIA_INEXISTENTE);
 			}
-
+			
 			Secretaria secretaria = secretariaConsultada.get();
 			if (secretaria.getOrcamentoFolha() < funcionarioDto.getSalario()) {
 				return new MensagemDTO(ORCAMENTO_FOLHA_PAGAMENTO_INSUFICIENTE);
 			}
-
+			
 			Secretaria secretariaAntiga = funcionario.getSecretaria();
 			secretariaAntiga.setOrcamentoFolha(secretariaAntiga.getOrcamentoFolha() + funcionario.getSalario());
 			secretariaRepository.save(secretariaAntiga);
-
+			
 		}
-
+		
 		if (funcionarioDto.getSalario() >= funcionario.getSalario()) {
-
+		
 			if (funcionario.getSecretaria().getOrcamentoFolha() < funcionarioDto.getSalario()) {
 				return new MensagemDTO(ORCAMENTO_FOLHA_PAGAMENTO_INSUFICIENTE);
 			}
-
+		
 			Secretaria secretaria = secretariaRepository.findById(funcionarioDto.getIdSecretaria()).get();
 
 			funcionario.setNome(funcionarioDto.getNome());
@@ -106,13 +107,13 @@ public class FuncionarioService implements IFuncionarioService{
 			funcionario.setSecretaria(secretaria);
 			funcionario.setFuncao(funcionarioDto.getFuncao());
 			funcionario.setConcursado(funcionarioDto.getConcursado());
-
+			
 			secretaria.setOrcamentoFolha(secretaria.getOrcamentoFolha() - funcionario.getSalario());
 			secretariaRepository.save(secretaria);
 
-			funcionarioRepository.save(funcionario);
+			funcionarioRepository.save(funcionario);	
 		}
-
+		
 		return new MensagemDTO(ALTERACAO_REALIZADA_COM_SUCESSO);
 	}
 
