@@ -77,6 +77,7 @@ public class FuncionarioService implements IFuncionarioService {
 		Funcionario funcionario = funcionarioConsultado.get();
 		if (funcionarioDto.getIdSecretaria() != funcionario.getSecretaria().getIdSecretaria()) {
 
+		    //FIXME: Que tal um método pra concentrar essas validações?
 			Optional<Secretaria> secretariaConsultada = secretariaRepository.findById(funcionarioDto.getIdSecretaria());
 			if (secretariaConsultada.isEmpty()) {
 				return new MensagemDTO(SECRETARIA_INEXISTENTE);
