@@ -70,6 +70,7 @@ public class FuncionarioService implements IFuncionarioService {
 
 		Optional<Funcionario> funcionarioConsultado = funcionarioRepository.findById(idFuncionario);
 
+	    //TODO: Você usou muito bem a ideia do fail first em todos os seus métodos.
 		if (funcionarioConsultado.isEmpty()) {
 			return new MensagemDTO(FUNCIONARIO_INEXISTENTE);
 		}
