@@ -27,6 +27,7 @@ public class SecretariaController {
 	ISecretariaService secretariaService;
 	
 	@PostMapping (produces = {MediaType.APPLICATION_JSON_VALUE})
+	//TODO: Foi legal usar dois DTOs diferentes aqui
 	public MensagemDTO adicionaSecretaria (@RequestBody CriaSecretariaDTO criaSecretariaDto) {
 		return secretariaService.adicionaSecretaria(criaSecretariaDto);
 	}
@@ -37,6 +38,7 @@ public class SecretariaController {
 	}
 	
 	@PutMapping (path = "/{idSecretaria}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	//TODO: Foi legal usar dois DTOs diferentes aqui
 	public MensagemDTO alteraSecretaria(@PathVariable Long idSecretaria, @RequestBody AlteraSecretariaDTO alteraSecretariaDTO) {
 		return secretariaService.alteraSecretaria(idSecretaria, alteraSecretariaDTO);
 	}

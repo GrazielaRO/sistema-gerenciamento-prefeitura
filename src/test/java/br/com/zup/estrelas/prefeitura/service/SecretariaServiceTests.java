@@ -73,6 +73,11 @@ public class SecretariaServiceTests {
 	@Test
 	public void naoDeveRemoverUmaSecretaria() {
 
+	    //FIXME: Grazi, esse mock não é o ideal.
+	    // Você deveria mockar o ExistsById, aqui o
+	    // teste passou mas por que o exists retornou um false
+	    // por padrão, dado que eles está mockado, mas perceba que
+	    // não há uma chamada ao findById no método remove.
 		Mockito.when(secretariaRepository.findById(1L)).thenReturn(Optional.empty());
 
 		MensagemDTO mensagemRetornada = this.secretariaService.removeSecretaria(1L);

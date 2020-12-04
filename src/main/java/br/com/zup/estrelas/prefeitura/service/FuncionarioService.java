@@ -70,6 +70,7 @@ public class FuncionarioService implements IFuncionarioService {
 
 		Optional<Funcionario> funcionarioConsultado = funcionarioRepository.findById(idFuncionario);
 
+	    //TODO: Você usou muito bem a ideia do fail first em todos os seus métodos.
 		if (funcionarioConsultado.isEmpty()) {
 			return new MensagemDTO(FUNCIONARIO_INEXISTENTE);
 		}
@@ -77,6 +78,7 @@ public class FuncionarioService implements IFuncionarioService {
 		Funcionario funcionario = funcionarioConsultado.get();
 		if (funcionarioDto.getIdSecretaria() != funcionario.getSecretaria().getIdSecretaria()) {
 
+		    //FIXME: Que tal um método pra concentrar essas validações?
 			Optional<Secretaria> secretariaConsultada = secretariaRepository.findById(funcionarioDto.getIdSecretaria());
 			if (secretariaConsultada.isEmpty()) {
 				return new MensagemDTO(SECRETARIA_INEXISTENTE);

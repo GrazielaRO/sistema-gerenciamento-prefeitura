@@ -46,6 +46,8 @@ public class ProjetoController {
 		return projetoService.listaProjetos();
 	}
 	
+	//FIXME: Grazi, a convenção do padrão é de que o identificador
+	// venha antes. /{idProjeto}/conclusao
 	@PutMapping (path = "/conclusao/{idProjeto}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public MensagemDTO finalizaProjeto (@PathVariable Long idProjeto, @RequestBody DataFinalProjetoDTO dataFinalProjetoDto) {
 		return projetoService.finalizaProjeto(idProjeto, dataFinalProjetoDto);
